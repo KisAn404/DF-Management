@@ -17,7 +17,9 @@ const Home = () => {
         <Link href="/Contact_Us">
           <button className="mx-3 hover:text-yellow-300"> Contact</button>
         </Link>
-        <button className="mx-3 hover:text-yellow-300"> Login</button>
+        <Link href="/Login">
+          <button className="mx-3 hover:text-yellow-300"> Login</button>
+        </Link>
       </div>
       <div className=" mt-20">
         <div className="  text-left mx-72 my-2 text-4xl font-bold text-white">

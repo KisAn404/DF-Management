@@ -3,76 +3,116 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import PersonIcon from "@mui/icons-material/Person";
 import * as React from "react";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import LockIcon from "@mui/icons-material/Lock";
+
+import DiamondIcon from "@mui/icons-material/Diamond";
 const Home = () => {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [formData, setFormData] = React.useState({
+    email: "",
+    password: "",
+  });
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log("Submitted credentials:", formData);
+    // Add logic for further processing, like sending the credentials to a server
   };
   return (
-    <div className=" h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-10 pt-10   ">
-      <div className=" grid grid-cols-12  ">
-        <div className=" col-span-6 ">
-          <div className="">
-            <div className=" flex">
-              <PersonIcon className=" my-3 mx-5" />
-              <TextField
-                id="outlined-basic"
-                label="Username"
-                variant="outlined"
-              />
-            </div>
-            <div>
-              <div className=" my-2">
-                <LockIcon className=" my-3 mx-5" />
+    <div className=" h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-10    ">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="mx-auto flex  justify-center text-white h-10 w-auto">
+            <DiamondIcon />
+          </div>
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
+            Welcome <span className=" text-blue-700"> Back !</span>
+          </h2>
+        </div>
 
-                <FormControl sx={{ m: 0, width: "25ch" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password">
-                    Password
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-password"
-                    type={showPassword ? "text" : "password"}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    label="Password"
-                  />
-                </FormControl>
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <form
+            className="space-y-6"
+            onSubmit={handleSubmit}
+            action="#"
+            method="POST"
+          >
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Email address
+              </label>
+              <div className="mt-2">
+                <input
+                  value={formData.email}
+                  onChange={handleChange}
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className="block font-bold px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
               </div>
             </div>
-          </div>
-        </div>
-        <div className=" col-span-6">
-          <div>
-            <p className=" text-center">javier</p>
-          </div>
+
+            <div>
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Password
+                </label>
+                <div className="text-sm">
+                  <a
+                    href="#"
+                    className="font-semibold text-white hover:text-indigo-500"
+                  >
+                    Forgot password?
+                  </a>
+                </div>
+              </div>
+              <div className="mt-2">
+                <input
+                  value={formData.password}
+                  onChange={handleChange}
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  className="block w-full font-bold px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Sign in
+              </button>
+            </div>
+          </form>
+
+          <p className="mt-10 text-center text-sm text-gray-500">
+            <a
+              href="#"
+              className="font-semibold leading-6 text-white hover:text-black"
+            >
+              Dont have an Account ? Create Account
+            </a>
+          </p>
         </div>
       </div>
     </div>
