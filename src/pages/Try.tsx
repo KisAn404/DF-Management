@@ -1,54 +1,44 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+// YourComponent.js
 
-export default function InputAdornments() {
-  const [showPassword, setShowPassword] = React.useState(false);
+import React from "react";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
-
+const YourComponent = () => {
   return (
-    <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-      <div>
-        <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">
-            Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
+    <>
+      <div className="flex items-center justify-center mt-12">
+        <div
+          className="relative block w-1/4 h-64 
+                      bg-gray-900 group"
+        >
+          <div
+            className="absolute text-center pt-20 bg-blue-700 inset-0 
+                            w-full h-64 group-hover:opacity-50"
+          >
+            <LocationOnIcon className=" text-white" />
+          </div>
+          <div className="relative p-10">
+            <div className="mt-2">
+              {/* Hidden content */}
+              <div
+                className="transition-all transform 
+                                translate-y-8 opacity-0 
+                                group-hover:opacity-100 
+                                group-hover:translate-y-0"
+              >
+                <div className="p-2">
+                  <p className="text-xl text-center text-white">
+                    Purok 4 Lungsudaan,Candija, Bohol
+                  </p>
+                </div>
+              </div>
+              {/* End of hidden content */}
+            </div>
+          </div>
+        </div>
       </div>
-    </Box>
+    </>
   );
-}
+};
+
+export default YourComponent;
